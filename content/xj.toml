@@ -1,0 +1,14 @@
+blog_name = "StaticBlogName"
+github = "https://github_path"
+[template]
+about = "content/template/about.pd"
+footer = "content/template/footer.pd"
+[[menus]]
+name = "Home" 
+url = "/home"
+[[menus]]
+name = "About"
+url = "/about"
+[[issues]]
+title = "test"
+path = "content/issue-1"

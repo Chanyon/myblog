@@ -1,0 +1,10 @@
+[[articles]]
+file = "1-first.pd"
+title = "first article"
+author = ""
+pub_date = "2023-02-17"
+[[articles]]
+file = "2-second.pd"
+title = "second article"
+author = ""
+pub_date = "2023-02-18"

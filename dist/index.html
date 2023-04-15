@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StaticBlogName</title>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.11.0" /> -->
+<style>
+  a:hover{
+    cursor: pointer;
+  }
+  #btn{
+  display: none;
+}
+</style>
+  </head>
+<body class="bg-slate-800">
+    <div class="container xl mx-auto"><header class="flex flex-row items-center h-24 w-auto bg-slate-300">
+<nav class="flex flex-row items-center h-10 w-full"><div class="basis-1/4 pl-4"> StaticBlogName </div><div class="basis-4/5"><ul class="flex flex-row"><li class="mx-4"><a data-href="/home">Home</a></li><li class="mx-4"><a data-href="/about">About</a></li>    </ul>
+</div>
+</nav>
+</header><main class="flex justify-center h-auto">
+    <!-- 版心 -->
+    <div class="my-4 w-4/5 h-full bg-slate-100">
+        <!-- content -->
+        <div><button id="btn">返回</button></div>
+        <div class="py-2" id="content">   <section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">test</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-1/1-first">first article</a></li><li class="h-16 p-2"><a data-href="/issue-1/2-second">second article</a></li></ul></section></div>
+</div>
+</main><footer class="h-64 mt-4 bg-slate-300"><style>
+:root{
+    --nav-width: 24em;
+    --nav-margin-l: 1em;
+}
+body{
+    margin: 0;
+    line-height: 1.5;
+}
+#contents {
+    max-width: 60em;
+    margin: auto;
+    padding: 0 1em;
+}
+#navigation {
+    padding: 0 1em;
+}
+@media screen and (min-width: 1025px) {
+    #navigation {
+        overflow: auto;
+        width: var(--nav-width);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        left:0;
+        bottom:0;
+        padding: unset;
+        margin-left: var(--nav-margin-l);
+    }
+    #contents-wrapper {
+        margin-left: calc(var(--nav-width) + var(--nav-margin-l));
+    }
+}
+table, td {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    text-align:left;
+    vertical-align:middle;
+}
+td {
+    padding: 0.1em;
+}
+.file {
+    font-weight: bold;
+    border: unset;
+}
+code {
+    background: #f8f8f8;
+    border: 1px dotted silver;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+pre > code {
+    display: block;
+    overflow: auto;
+    padding: 0.5em;
+    border: 1px solid #eee;
+    line-height: normal;
+}
+figure {
+    margin: auto 0;
+}
+figure pre {
+    margin-top: 0;
+}
+figcaption {
+    padding-left: 0.5em;
+    font-size: small;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+figcaption.zig-cap {
+    background: #fcdba5;
+}
+figcaption.c-cap {
+    background: #a8b9cc;
+    color: #000;
+}
+figcaption.shell-cap {
+    background: #ccc;
+    color: #000;
+}
+aside {
+    border-left: 0.25em solid #f7a41d;
+    padding: 0 1em 0 1em;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    text-decoration: none;
+    color: #333;
+}
+a.hdr {
+    visibility: hidden;
+}
+h1:hover > a.hdr, h2:hover > a.hdr, h3:hover > a.hdr, h4:hover > a.hdr, h5:hover > a.hdr, h6:hover > a.hdr {
+    visibility: visible;
+}
+pre {
+    counter-reset: line;
+}
+pre .line:before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    padding-right: 1em;
+    width: 2em;
+    text-align: right;
+    color: #999;
+}
+.t_left{
+    text-align:left;
+}
+.t_right{
+    text-align:right;
+}
+.t_center{
+    text-align:center;
+}
+.t_justify{
+    text-align:justify;
+}
+.tv_top{
+    vertical-align:top;
+}
+.tv_middle{
+    vertical-align:middle;
+}
+.tv_bottom{
+    vertical-align:bottom;
+}
+</style><div style="text-align: center;margin-top: 40px">  <p>Xjournal - a simple tool to build your static blog</p>  <a href="https://github.com/Chanyon/Xjournal">by Xjournal</a></div></footer> </div><script>
+        const routes = {
+            "/home": "./index.html",
+            "/about": "./about.html",
+"/issue-1/1-first":"./issue-1/1-first.html",
+
+"/issue-1/2-second":"./issue-1/2-second.html",
+}
+       async function handleLocation(path) {
+            const route = routes[path] /*|| routes[404];*/
+            const html = await fetch(route).then(data => data.text());
+            return html;
+       }
+       const btn = document.querySelector("#btn");
+       const navList = document.querySelectorAll("nav ul");
+       const sectionLiAList = document.querySelectorAll("section");
+       const content = document.querySelector("#content"); 
+       const clickList = [...navList, ...sectionLiAList];
+ clickList.forEach(link => {
+   link.addEventListener("click", async e => {
+       e.preventDefault();
+         const url = e.target.dataset["href"];
+   //window.history.pushState({}, "", url);
+     if(e.target.tagName === "A") {
+      const html = await handleLocation(url);
+      if (url === "/home") {
+       window.location.reload();
+    }
+    if (url !== "/home" || url !== "/about") {
+       btn.style.display = "block";
+   }
+   content.innerHTML = html;
+  }
+  });
+});
+    window.onload = function() {
+  const localData = {
+    contents: [],
+  };
+  sectionLiAList.forEach(sec => {
+    localData.contents.push(sec.innerHTML);
+  });
+   window.localStorage.setItem("bodyContent",JSON.stringify(localData));
+ };
+ btn.addEventListener("click",e => {
+ btn.style.display = "none";
+ content.innerHTML = "";
+ [...sectionLiAList].forEach(section => {
+        content.appendChild(section);
+     });
+});
+    </script></body>
+</html>
