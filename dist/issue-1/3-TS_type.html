@@ -1,0 +1,209 @@
+<main>
+<article>
+<div><div><h4 style="text-align: center">TS类型体操笔记</h4></div></div><style>
+:root{
+    --nav-width: 24em;
+    --nav-margin-l: 1em;
+}
+body{
+    margin: 0;
+    line-height: 1.5;
+}
+#contents {
+    max-width: 60em;
+    margin: auto;
+    padding: 0 1em;
+}
+#navigation {
+    padding: 0 1em;
+}
+@media screen and (min-width: 1025px) {
+    #navigation {
+        overflow: auto;
+        width: var(--nav-width);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        left:0;
+        bottom:0;
+        padding: unset;
+        margin-left: var(--nav-margin-l);
+    }
+    #contents-wrapper {
+        margin-left: calc(var(--nav-width) + var(--nav-margin-l));
+    }
+}
+table, td {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    text-align:left;
+    vertical-align:middle;
+}
+td {
+    padding: 0.1em;
+}
+.file {
+    font-weight: bold;
+    border: unset;
+}
+code {
+    background: #f8f8f8;
+    border: 1px dotted silver;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+pre > code {
+    display: block;
+    overflow: auto;
+    padding: 0.5em;
+    border: 1px solid #eee;
+    line-height: normal;
+}
+figure {
+    margin: auto 0;
+}
+figure pre {
+    margin-top: 0;
+}
+figcaption {
+    padding-left: 0.5em;
+    font-size: small;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+figcaption.zig-cap {
+    background: #fcdba5;
+}
+figcaption.c-cap {
+    background: #a8b9cc;
+    color: #000;
+}
+figcaption.shell-cap {
+    background: #ccc;
+    color: #000;
+}
+aside {
+    border-left: 0.25em solid #f7a41d;
+    padding: 0 1em 0 1em;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    text-decoration: none;
+    color: #333;
+}
+a.hdr {
+    visibility: hidden;
+}
+h1:hover > a.hdr, h2:hover > a.hdr, h3:hover > a.hdr, h4:hover > a.hdr, h5:hover > a.hdr, h6:hover > a.hdr {
+    visibility: visible;
+}
+pre {
+    counter-reset: line;
+}
+pre .line:before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    padding-right: 1em;
+    width: 2em;
+    text-align: right;
+    color: #999;
+}
+.t_left{
+    text-align:left;
+}
+.t_right{
+    text-align:right;
+}
+.t_center{
+    text-align:center;
+}
+.t_justify{
+    text-align:justify;
+}
+.tv_top{
+    vertical-align:top;
+}
+.tv_middle{
+    vertical-align:middle;
+}
+.tv_bottom{
+    vertical-align:bottom;
+}
+</style><h5>元组长度计算:</h5><p>元组类型取length就是数值</p>
+<p>example:</p>
+<figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">type num2 = [unknown,string]['length'] =&gt; 2</span>
+</code></pre></figure>
+<p>元组长度实现加减乘除</p>
+<p>Add:</p>
+<figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">type BuildArray&lt;</span>
+<span class="line">	Length extends number,</span>
+<span class="line">	Element = unknown,</span>
+<span class="line">	Arr extends unknown[] = [],</span>
+<span class="line">&gt; = Arr["length"] extends Length</span>
+<span class="line">	? Arr</span>
+<span class="line">	: BuildArray&lt;Length, Element, [...Arr, Element]&gt;;</span>
+<span class="line"></span>
+<span class="line">type Add&lt;Num1 extends number, Num2 extends number&gt; = </span>
+<span class="line">  [...BuildArray&lt;Num1&gt;, ...BuildArray&lt;Num2&gt;]['length']</span>
+<span class="line"></span>
+<span class="line">type AddRes = Add&lt;1,1&gt;</span>
+<span class="line">//值=&gt; 2 </span>
+</code></pre></figure>
+<p></p>
+<p>Subtract:</p>
+<figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">type Subtract&lt;Num1 extends number, Num2 extends number&gt; = </span>
+<span class="line">  BuildArray&lt;Num1&gt; extends [...BuildArray&lt;Num2&gt;, ...infer Rest] ? </span>
+<span class="line">  Rest['length'] : never;</span>
+<span class="line"></span>
+<span class="line">type SubRes = Subtract&lt;10,1&gt;;</span>
+<span class="line">// 9</span>
+</code></pre></figure>
+<p></p>
+<p>Multiply:</p>
+<p>乘法是多个加法累加的结果</p>
+<p></p>
+<figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">type Mul&lt;Num1 extends number, Num2 extends number, ResultArray extends Array&lt;unknown&gt; = []&gt; =</span>
+<span class="line">	Num2 extends 0 ? ResultArray['length'] :</span>
+<span class="line">  Mul&lt;Num1,Subtract&lt;Num2,1&gt;, [...BuildArray&lt;Num1&gt;, ...ResultArray]&gt;;</span>
+<span class="line"></span>
+<span class="line">type MulRes = Mul&lt;2,2&gt;</span>
+<span class="line">// 4</span>
+</code></pre></figure>
+<p></p>
+<p>Div：</p>
+<p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code></p>
+<figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">//整除</span>
+<span class="line">type Div&lt;Num1 extends number, Num2 extends number, ResultArray extends Array&lt;unknown&gt; = []&gt; =</span>
+<span class="line">	Num1 extends 0 ? ResultArray['length'] :</span>
+<span class="line">	Div&lt;Subtract&lt;Num1,Num2&gt;, Num2, [unknown,...ResultArray]&gt;;</span>
+<span class="line"></span>
+<span class="line">type DivRes = Div&lt;2,1&gt;</span>
+<span class="line">// 2</span>
+</code></pre></figure>
+</article>
+</main>
