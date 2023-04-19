@@ -15,20 +15,7 @@
   display: none;
 }
 </style>
-  </head>
-<body class="bg-slate-800">
-    <div class="container xl mx-auto"><header class="flex flex-row items-center h-24 w-auto bg-slate-300">
-<nav class="flex flex-row items-center h-10 w-full"><div class="basis-1/4 pl-4"> StaticBlogName </div><div class="basis-4/5"><ul class="flex flex-row"><li class="mx-4"><a data-href="/home">Home</a></li><li class="mx-4"><a data-href="/about">About</a></li>    </ul>
-</div>
-</nav>
-</header><main class="flex justify-center h-auto">
-    <!-- 版心 -->
-    <div class="my-4 w-4/5 h-full bg-slate-100">
-        <!-- content -->
-        <div><button id="btn">返回</button></div>
-        <div class="py-2" id="content">   <section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">test</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-1/1-first">first article</a></li><li class="h-16 p-2"><a data-href="/issue-1/2-second">second article</a></li><li class="h-16 p-2"><a data-href="/issue-1/3-TS_type">TS类型体操笔记</a></li></ul></section></div>
-</div>
-</main><footer class="h-64 mt-4 bg-slate-300"><style>
+    <style>
 :root{
     --nav-width: 24em;
     --nav-margin-l: 1em;
@@ -77,49 +64,49 @@ td {
 code {
     background: #f8f8f8;
     border: 1px dotted silver;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 pre > code {
-    display: block;
-    overflow: auto;
-    padding: 0.5em;
-    border: 1px solid #eee;
-    line-height: normal;
+  display: block;
+  overflow: auto;
+  padding: 0.5em;
+  border: 1px solid #eee;
+  line-height: normal;
 }
 figure {
-    margin: auto 0;
+  margin: auto 0;
 }
 figure pre {
-    margin-top: 0;
+  margin-top: 0;
 }
 figcaption {
-    padding-left: 0.5em;
-    font-size: small;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  padding-left: 0.5em;
+ font-size: small;
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
 }
 figcaption.zig-cap {
-    background: #fcdba5;
+  background: #fcdba5;
 }
 figcaption.c-cap {
-    background: #a8b9cc;
-    color: #000;
+  background: #a8b9cc;
+color: #000;
 }
 figcaption.shell-cap {
-    background: #ccc;
-    color: #000;
+  background: #ccc;
+ color: #000;
 }
 aside {
-    border-left: 0.25em solid #f7a41d;
-    padding: 0 1em 0 1em;
+  border-left: 0.25em solid #f7a41d;
+  padding: 0 1em 0 1em;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     text-decoration: none;
     color: #333;
 }
 a.hdr {
-    visibility: hidden;
+   visibility: hidden;
 }
 h1:hover > a.hdr, h2:hover > a.hdr, h3:hover > a.hdr, h4:hover > a.hdr, h5:hover > a.hdr, h6:hover > a.hdr {
     visibility: visible;
@@ -128,13 +115,13 @@ pre {
     counter-reset: line;
 }
 pre .line:before {
-    counter-increment: line;
-    content: counter(line);
-    display: inline-block;
-    padding-right: 1em;
-    width: 2em;
-    text-align: right;
-    color: #999;
+   counter-increment: line;
+ content: counter(line);
+display: inline-block;
+ padding-right: 1em;
+ width: 2em;
+ text-align: right;
+ color: #999;
 }
 .t_left{
     text-align:left;
@@ -157,7 +144,21 @@ pre .line:before {
 .tv_bottom{
     vertical-align:bottom;
 }
-</style><div style="text-align: center;margin-top: 40px">  <p>Xjournal - a simple tool to build your static blog</p>  <a href="https://github.com/Chanyon/Xjournal">by Xjournal</a></div></footer> </div><script>
+</style>
+  </head>
+<body class="bg-slate-800">
+    <div class="container xl mx-auto"><header class="flex flex-row items-center h-24 w-auto bg-slate-300">
+<nav class="flex flex-row items-center h-10 w-full"><div class="basis-1/4 pl-4"> StaticBlogName </div><div class="basis-4/5"><ul class="flex flex-row"><li class="mx-4"><a data-href="/home">Home</a></li><li class="mx-4"><a data-href="/about">About</a></li>    </ul>
+</div>
+</nav>
+</header><main class="flex justify-center h-auto">
+    <!-- 版心 -->
+    <div class="my-4 w-4/5 h-full bg-slate-100">
+        <!-- content -->
+        <div><button id="btn">返回</button></div>
+        <div class="py-2" id="content">   <section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">随记</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-1/1-first">first article</a></li><li class="h-16 p-2"><a data-href="/issue-1/2-second">second article</a></li><li class="h-16 p-2"><a data-href="/issue-1/3-TS_type">TS类型体操笔记</a></li></ul></section></div>
+</div>
+</main><footer class="h-64 mt-4 bg-slate-300"><div style="text-align: center;margin-top: 40px">  <p>Xjournal - a simple tool to build your static blog</p>  <a href="https://github.com/Chanyon/Xjournal">by Xjournal</a></div></footer> </div><script>
         const routes = {
             "/home": "./index.html",
             "/about": "./about.html",

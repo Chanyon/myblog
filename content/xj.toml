@@ -10,5 +10,5 @@ url = "/home"
 name = "About"
 url = "/about"
 [[issues]]
-title = "test"
+title = "随记"
 path = "content/issue-1"
