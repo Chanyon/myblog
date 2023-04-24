@@ -1,4 +1,4 @@
-blog_name = "StaticBlogName"
+blog_name = "既来之，则安之"
 github = "https://github_path"
 [template]
 about = "content/template/about.pd"
