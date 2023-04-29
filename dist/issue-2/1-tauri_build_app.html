@@ -1,0 +1,49 @@
+<main>
+<article>
+<div><div><h4 style="text-align: center">使用tauri+vite打包多页静态网页</h4></div></div><h5>一、Tauri介绍</h5><p>What is Tauri?</p>
+<p>Tauri is a toolkit that helps developers make applications for </p>
+<p>the major desktop platforms - using virtually any frontend framework </p>
+<p>in existence. The core is built with Rust, and the CLI leverages Node.js </p>
+<p>making Tauri a genuinely polyglot approach to creating and maintaining great apps.</p>
+<p><a href="https://tauri.app">Tauri</a></p>
+<p></p>
+<h5>二、快速开始</h5><p><a href="https://tauri.app/zh-cn/v1/guides/getting-started/setup/html-css-js">HTML/CSS/JS</a></p>
+<p></p>
+<h5>三、初始化项目</h5><figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">使用 pnpm init 初始化</span>
+<span class="line">安装vite pnpm add vite</span>
+<span class="line">修改script</span>
+<span class="line">"scripts": {</span>
+<span class="line">    "dev": "vite",</span>
+<span class="line">    "build": "vite build",</span>
+<span class="line">    "preview": "vite preview",</span>
+<span class="line">  },</span>
+</code></pre></figure>
+<h5>四、其他插件</h5><figure>
+	<figcaption class="-cap">
+		<cite class=""></cite>
+	</figcaption>
+<pre><code>
+<span class="line">用来复制需要的文件到public文件夹vite打包时会一起打包到dist目录</span>
+<span class="line">pnpm add rollup-plugin-copy</span>
+<span class="line"></span>
+<span class="line">vite.config.js中引入</span>
+<span class="line">import copy from 'rollup-plugin-copy'</span>
+<span class="line">export default defineConfig({</span>
+<span class="line">  plugins: [</span>
+<span class="line">    copy({</span>
+<span class="line">      targets: [</span>
+<span class="line">        { src: "./assets/*", dest: "./public/assets" }</span>
+<span class="line">      ],</span>
+<span class="line">      verbose: true,</span>
+<span class="line">      copyOnce: true,</span>
+<span class="line">    })</span>
+<span class="line">  ]</span>
+<span class="line">})</span>
+</code></pre></figure>
+</article>
+</main>

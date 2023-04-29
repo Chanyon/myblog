@@ -12,3 +12,6 @@ url = "/about"
 [[issues]]
 title = "随记"
 path = "content/issue-1"
+[[issues]]
+title = "Rust"
+path = "content/issue-2"
