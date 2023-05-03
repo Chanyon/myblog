@@ -1,6 +1,7 @@
 <main>
 <article>
-<div><div><h4 style="text-align: center">TS类型体操笔记</h4></div></div><h5>元组长度计算:</h5><p>元组类型取length就是数值</p>
+<div><div><h4 style="text-align: center">TS类型体操笔记</h4></div></div><ul>
+<li><a id="toc-1. Add" href="#N1. Add">1. Add</a></li><li><a id="toc-2. Subtract" href="#N2. Subtract">2. Subtract</a></li><li><a id="toc-3. Multiply" href="#N3. Multiply">3. Multiply</a></li><li><a id="toc-4. Div" href="#N4. Div">4. Div</a></li></ul><h5>元组长度计算:</h5><p>元组类型取length就是数值</p>
 <p>example:</p>
 <figure>
 	<figcaption class="-cap">
@@ -10,7 +11,7 @@
 <span class="line">type num2 = [unknown,string]['length'] =&gt; 2</span>
 </code></pre></figure>
 <p>元组长度实现加减乘除</p>
-<p>Add:</p>
+<h1 id="N1. Add"><a href="#toc-1. Add">1. Add</a></h1>
 <figure>
 	<figcaption class="-cap">
 		<cite class=""></cite>
@@ -31,7 +32,7 @@
 <span class="line">//值=&gt; 2 </span>
 </code></pre></figure>
 <p></p>
-<p>Subtract:</p>
+<h1 id="N2. Subtract"><a href="#toc-2. Subtract">2. Subtract</a></h1>
 <figure>
 	<figcaption class="-cap">
 		<cite class=""></cite>
@@ -45,7 +46,7 @@
 <span class="line">// 9</span>
 </code></pre></figure>
 <p></p>
-<p>Multiply:</p>
+<h1 id="N3. Multiply"><a href="#toc-3. Multiply">3. Multiply</a></h1>
 <p>乘法是多个加法累加的结果</p>
 <p></p>
 <figure>
@@ -61,7 +62,7 @@
 <span class="line">// 4</span>
 </code></pre></figure>
 <p></p>
-<p>Div：</p>
+<h1 id="N4. Div"><a href="#toc-4. Div">4. Div</a></h1>
 <p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code></p>
 <figure>
 	<figcaption class="-cap">

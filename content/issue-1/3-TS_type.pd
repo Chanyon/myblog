@@ -7,7 +7,7 @@ example:
 type num2 = [unknown,string]['length'] => 2
 ```
 元组长度实现加减乘除
-Add:
+1. Add
 ```
 type BuildArray<
 	Length extends number,
@@ -24,7 +24,7 @@ type AddRes = Add<1,1>
 //值=> 2 
 ```
 
-Subtract:
+2. Subtract
 ```
 type Subtract<Num1 extends number, Num2 extends number> = 
   BuildArray<Num1> extends [...BuildArray<Num2>, ...infer Rest] ? 
@@ -34,7 +34,7 @@ type SubRes = Subtract<10,1>;
 // 9
 ```
 
-Multiply:
+3. Multiply
 乘法是多个加法累加的结果
 
 ```
@@ -46,7 +46,7 @@ type MulRes = Mul<2,2>
 // 4
 ```
 
-Div：
+4. Div
 除法的实现就是被减数不断减去减数，直到减为 `0`
 ```
 //整除
