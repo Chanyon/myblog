@@ -1,10 +1,10 @@
 blog_name = "既来之，则安之"
 github = "https://github.com/chanyon"
 output = "dist"
-is_headline = true
+is_headline = false
 [template]
-about = "content/template/about.pd"
-footer = "content/template/footer.pd"
+about = "content/template/about.md"
+footer = "content/template/footer.md"
 [[menus]]
 name = "Home" 
 url = "/home"
