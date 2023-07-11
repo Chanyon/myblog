@@ -11,7 +11,7 @@ hello,欢迎来到我的BLOG！
 [cubeExercises-魔方盲拧公式记忆网站](https://github.com/Chanyon/cubeExercises)
 
 前端:
-[前后端分离BLOG](https://github.com/Chanyon/go-web-blog)
+<a href="https://github.com/Chanyon/go\_web\_blog" target="\_blank">前后端分离BLOG</a>
 
 参与开源项目:
 [Popup translation](https://github.com/fzdwx/popup-translation)

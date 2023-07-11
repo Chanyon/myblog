@@ -15,10 +15,11 @@ making Tauri a genuinely polyglot approach to creating and maintaining great app
 
 ##### 三、初始化项目
 
-```
-使用 pnpm init 初始化
-安装vite pnpm add vite
-修改script
+```javascript
+//使用 pnpm init 初始化
+//安装vite pnpm add vite
+//修改script
+
 "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -28,11 +29,11 @@ making Tauri a genuinely polyglot approach to creating and maintaining great app
 
 ##### 四、其他插件
 
-```
-用来复制需要的文件到public文件夹vite打包时会一起打包到dist目录
-pnpm add rollup-plugin-copy
+```javascript
+//用来复制需要的文件到public文件夹vite打包时会一起打包到dist目录
+//pnpm add rollup-plugin-copy
 
-vite.config.js中引入
+//vite.config.js中引入
 import copy from 'rollup-plugin-copy'
 export default defineConfig({
   plugins: [

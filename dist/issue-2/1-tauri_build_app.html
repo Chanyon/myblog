@@ -1,4 +1,31 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">使用tauri+vite打包多页静态网页</h4></div></div><h5>一、Tauri介绍</h5><p>What is Tauri? <br>Tauri is a toolkit that helps developers make applications for <br>the major desktop platforms - using virtually any frontend framework <br>in existence. The core is built with Rust, and the CLI leverages Node.js <br>making Tauri a genuinely polyglot approach to creating and maintaining great apps. <br><a href="https://tauri.app">Tauri</a><br><br></p><h5>二、快速开始</h5><a href="https://tauri.app/zh-cn/v1/guides/getting-started/setup/html-css-js">HTML/CSS/JS</a><h5>三、初始化项目</h5><pre><code><br>使用 pnpm init 初始化<br>安装vite pnpm add vite<br>修改script<br>"scripts": {<br>    "dev": "vite",<br>    "build": "vite build",<br>    "preview": "vite preview",<br>  },<br></code></pre><h5>四、其他插件</h5><pre><code><br>用来复制需要的文件到public文件夹vite打包时会一起打包到dist目录<br>pnpm add rollup-plugin-copy<br><br>vite.config.js中引入<br>import copy from 'rollup-plugin-copy'<br>export default defineConfig({<br>  plugins: [<br>    copy({<br>      targets: [<br>        { src: "./assets/*", dest: "./public/assets" }<br>      ],<br>      verbose: true,<br>      copyOnce: true,<br>    })<br>  ]<br>})<br></code></pre></article>
+<div><div class="article_title"><h4 style="text-align: center">使用tauri+vite打包多页静态网页</h4></div></div><h5>一、Tauri介绍</h5><p>What is Tauri? <br>Tauri is a toolkit that helps developers make applications for <br>the major desktop platforms - using virtually any frontend framework <br>in existence. The core is built with Rust, and the CLI leverages Node.js <br>making Tauri a genuinely polyglot approach to creating and maintaining great apps. <br><a href="https://tauri.app">Tauri</a><br><br></p><h5>二、快速开始</h5><a href="https://tauri.app/zh-cn/v1/guides/getting-started/setup/html-css-js">HTML/CSS/JS</a><h5>三、初始化项目</h5><pre><code class="language-javascript"><span>
+</span><span>//使用 pnpm init 初始化</span><span>
+</span><span>//安装vite pnpm add vite</span><span>
+</span><span>//修改script</span><span>
+</span><span>
+</span><span>"scripts": {</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>"dev": "vite",</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>"build": "vite build",</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>"preview": "vite preview",</span><span>
+</span><span> </span><span> </span><span>},</span><span>
+</span></code></pre><h5>四、其他插件</h5><pre><code class="language-javascript"><span>
+</span><span>//用来复制需要的文件到public文件夹vite打包时会一起打包到dist目录</span><span>
+</span><span>//pnpm add rollup-plugin-copy</span><span>
+</span><span>
+</span><span>//vite.config.js中引入</span><span>
+</span><span>import copy from 'rollup-plugin-copy'</span><span>
+</span><span>export default defineConfig({</span><span>
+</span><span> </span><span> </span><span>plugins: </span><span>[</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>copy({</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>targets: </span><span>[</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>{ src: "./assets/</span><span>*</span><span>", dest: "./public/assets" }</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>]</span><span>,</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>verbose: true,</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>copyOnce: true,</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>)</span><span>
+</span><span> </span><span> </span><span>]</span><span>
+</span><span>}</span><span>)</span><span>
+</span></code></pre></article>
 </main>

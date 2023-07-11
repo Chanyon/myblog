@@ -1,4 +1,42 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">TS类型体操笔记</h4></div></div><h3>元组长度计算:</h3><p>元组类型取length就是数值<br>example:<br></p><pre><code><br>type num2 = [unknown,string]['length'] => 2<br></code></pre><p>元组长度实现加减乘除<br></p><h3>1.Add</h3><pre><code><br>type BuildArray<<br>	Length extends number,<br>	Element = unknown,<br>	Arr extends unknown[] = [],<br>> = Arr["length"] extends Length<br>	? Arr<br>	: BuildArray<Length, Element, [...Arr, Element]>;<br><br>type Add<Num1 extends number, Num2 extends number> = <br>  [...BuildArray<Num1>, ...BuildArray<Num2>]['length']<br><br>type AddRes = Add<1,1><br>//值=> 2 <br></code></pre><h3>2.Subtract</h3><pre><code><br>type Subtract<Num1 extends number, Num2 extends number> = <br>  BuildArray<Num1> extends [...BuildArray<Num2>, ...infer Rest] ? <br>  Rest['length'] : never;<br><br>type SubRes = Subtract<10,1>;<br>// 9<br></code></pre><h3>3.Multiply</h3><p>乘法是多个加法累加的结果<br></p><pre><code><br>type Mul<Num1 extends number, Num2 extends number, ResultArray extends Array<unknown> = []> =<br>	Num2 extends 0 ? ResultArray['length'] :<br>  Mul<Num1,Subtract<Num2,1>, [...BuildArray<Num1>, ...ResultArray]>;<br><br>type MulRes = Mul<2,2><br>// 4<br></code></pre><h3>4.Div</h3><p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code><br></p><pre><code><br>//整除<br>type Div<Num1 extends number, Num2 extends number, ResultArray extends Array<unknown> = []> =<br>	Num1 extends 0 ? ResultArray['length'] :<br>	Div<Subtract<Num1,Num2>, Num2, [unknown,...ResultArray]>;<br><br>type DivRes = Div<2,1><br>// 2<br></code></pre></article>
+<div><div class="article_title"><h4 style="text-align: center">TS类型体操笔记</h4></div></div><h3>元组长度计算:</h3><p>元组类型取length就是数值<br>example:<br></p><pre><code><span>
+</span><span>type num2 = </span><span>[</span><span>unknown,string</span><span>]</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>=</span><span>></span><span> </span><span>2</span><span>
+</span></code></pre><p>元组长度实现加减乘除<br></p><h3>1.Add</h3><pre><code class="language-typescript"><span>
+</span><span>type BuildArray</span><span><</span><span>
+</span><span>	Length extends number,</span><span>
+</span><span>	Element = unknown,</span><span>
+</span><span>	Arr extends unknown</span><span>[</span><span>]</span><span> </span><span>= </span><span>[</span><span>]</span><span>,</span><span>
+</span><span>></span><span> </span><span>= Arr</span><span>[</span><span>"length"</span><span>]</span><span> </span><span>extends Length</span><span>
+</span><span>	? Arr</span><span>
+</span><span>	: BuildArray</span><span><</span><span>Length, Element, </span><span>[</span><span>...Arr, Element</span><span>]</span><span>></span><span>;</span><span>
+</span><span>
+</span><span>type Add</span><span><</span><span>Num1 extends number, Num2 extends number</span><span>></span><span> </span><span>= </span><span>
+</span><span> </span><span> </span><span>[</span><span>...BuildArray</span><span><</span><span>Num1</span><span>></span><span>, ...BuildArray</span><span><</span><span>Num2</span><span>></span><span>]</span><span>[</span><span>'length'</span><span>]</span><span>
+</span><span>
+</span><span>type AddRes = Add</span><span><</span><span>1</span><span>,1</span><span>></span><span>
+</span><span>//值=</span><span>></span><span> </span><span>2</span><span> </span><span>
+</span></code></pre><h3>2.Subtract</h3><pre><code class="language-typescript"><span>
+</span><span>type Subtract</span><span><</span><span>Num1 extends number, Num2 extends number</span><span>></span><span> </span><span>= </span><span>
+</span><span> </span><span> </span><span>BuildArray</span><span><</span><span>Num1</span><span>></span><span> </span><span>extends </span><span>[</span><span>...BuildArray</span><span><</span><span>Num2</span><span>></span><span>, ...infer Rest</span><span>]</span><span> </span><span>? </span><span>
+</span><span> </span><span> </span><span>Rest</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span> </span><span>never;</span><span>
+</span><span>
+</span><span>type SubRes = Subtract</span><span><</span><span>10</span><span>,1</span><span>></span><span>;</span><span>
+</span><span>// 9</span><span>
+</span></code></pre><h3>3.Multiply</h3><p>乘法是多个加法累加的结果<br></p><pre><code class="language-typescript"><span>
+</span><span>type Mul</span><span><</span><span>Num1 extends number, Num2 extends number, ResultArray extends Array</span><span><</span><span>unknown</span><span>></span><span> </span><span>= </span><span>[</span><span>]</span><span>></span><span> </span><span>=</span><span>
+</span><span>	Num2 extends 0 ? ResultArray</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span>
+</span><span> </span><span> </span><span>Mul</span><span><</span><span>Num1,Subtract</span><span><</span><span>Num2,1</span><span>></span><span>, </span><span>[</span><span>...BuildArray</span><span><</span><span>Num1</span><span>></span><span>, ...ResultArray</span><span>]</span><span>></span><span>;</span><span>
+</span><span>
+</span><span>type MulRes = Mul</span><span><</span><span>2</span><span>,2</span><span>></span><span>
+</span><span>// 4</span><span>
+</span></code></pre><h3>4.Div</h3><p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code><br></p><pre><code class="language-typescript"><span>
+</span><span>//整除</span><span>
+</span><span>type Div</span><span><</span><span>Num1 extends number, Num2 extends number, ResultArray extends Array</span><span><</span><span>unknown</span><span>></span><span> </span><span>= </span><span>[</span><span>]</span><span>></span><span> </span><span>=</span><span>
+</span><span>	Num1 extends 0 ? ResultArray</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span>
+</span><span>	Div</span><span><</span><span>Subtract</span><span><</span><span>Num1,Num2</span><span>></span><span>, Num2, </span><span>[</span><span>unknown,...ResultArray</span><span>]</span><span>></span><span>;</span><span>
+</span><span>
+</span><span>type DivRes = Div</span><span><</span><span>2</span><span>,1</span><span>></span><span>
+</span><span>// 2</span><span>
+</span></code></pre></article>
 </main>
