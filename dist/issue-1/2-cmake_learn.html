@@ -1,0 +1,59 @@
+<main transition-style="in:wipe:down">
+<article>
+<div><div class="article_title"><h4 style="text-align: center">学习 CMAKE 笔记</h4></div></div><ul><li><a href="#target-5.44064342e-01">CMake</a></li><li><a href="#target-7.42648020e-02">设置工程名</a></li><li><a href="#target-1.12626127e-01">定义变量</a></li><li><a href="#target-8.48216354e-01">搜索文件</a></li><li><a href="#target-8.58960270e-01">编译、链接静态库</a></li><li><a href="#target-8.17699551e-01">编译、链接动态库</a></li><li><a href="#target-6.91664934e-01">预定义宏</a></li><li><a href="#target-8.23517084e-01">自定义宏</a></li><li><a href="#target-2.03323587e-01">资源链接</a></li></ul><h3 id="target-5.44064342e-01">CMake</h3><ul><li><p>CMake是一个跨平台的项目构建工具。<br></p></li></ul><h3 id="target-7.42648020e-02">设置工程名</h3><pre><code class="language-cmake"><span>
+</span><span>project("demo"</span><span>)</span><span>
+</span><span>
+</span></code></pre><h3 id="target-1.12626127e-01">定义变量</h3><pre><code class="language-cmake"><span>
+</span><span>set(SRC</span><span>_</span><span>LIST ${SOURCE}</span><span>)</span><span>
+</span><span>
+</span></code></pre><h3 id="target-8.48216354e-01">搜索文件</h3><pre><code class="language-cmake"><span>
+</span><span>aux</span><span>_</span><span>source</span><span>_</span><span>directory(${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/src/ SOURCE</span><span>_</span><span>FILES</span><span>)</span><span> </span><span>#</span><span>1</span><span>
+</span><span>
+</span><span>file(GLOB CLAC</span><span>_</span><span>LIST ${CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/calc/</span><span>*</span><span>.cpp</span><span>)</span><span> </span><span>#</span><span>1</span><span>
+</span><span>
+</span></code></pre><h3 id="target-8.58960270e-01">编译、链接静态库</h3><pre><code class="language-cmake"><span>
+</span><span>add</span><span>_</span><span>library(calc STATIC ${CLAC</span><span>_</span><span>LIST}</span><span>)</span><span>
+</span><span>
+</span><span>link</span><span>_</span><span>directories(${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/lib</span><span>)</span><span>
+</span><span>
+</span><span>link</span><span>_</span><span>libraries(calc</span><span>)</span><span>
+</span><span>
+</span></code></pre><h3 id="target-8.17699551e-01">编译、链接动态库</h3><pre><code class="language-cmake"><span>
+</span><span>set(LIBRARY</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH ${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/lib</span><span>)</span><span>
+</span><span>
+</span><span>add</span><span>_</span><span>library(calc SHARED ${CLAC</span><span>_</span><span>LIST}</span><span>)</span><span>
+</span><span>
+</span><span>target</span><span>_</span><span>link</span><span>_</span><span>libraries(${TARGET</span><span>_</span><span>NAME} calc</span><span>)</span><span>
+</span><span>
+</span></code></pre><h3 id="target-6.91664934e-01">预定义宏</h3><pre><code class="language-markdown"><span>
+</span><span>|</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>宏       </span><span>|</span><span> </span><span> </span><span> </span><span>描述                 </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span> </span><span>|</span><span> </span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span> </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>使用cmake命令后紧跟的目录，一般是工程的根目录 </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>BINARY</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>执行cmake命令的目录                      </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>当前处理的CMakeLists.txt所在的路径  </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>BINARY</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>target 编译目录                   </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>EXECUTABLE</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH   </span><span>|</span><span> </span><span>重新定义目标二进制可执行文件的位置     </span><span>|</span><span> </span><span>
+</span><span>
+</span><span>|</span><span> </span><span>LIBRARY</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH	     </span><span>|</span><span> </span><span>重新定义目标链接库文件的位置          </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>NAME	           </span><span>|</span><span> </span><span>返回通过PROJECT定义的项目名称        </span><span>|</span><span>
+</span><span>
+</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>BINARY</span><span>_</span><span>DIR	       </span><span>|</span><span> </span><span>项目构建路径，假设在build目录进行的构建，那么得到build目录的路径 </span><span>|</span><span>
+</span><span>
+</span></code></pre><h3 id="target-8.23517084e-01">自定义宏</h3><pre><code class="language-cmake"><span>
+</span><span>#</span><span> </span><span>自定义 DEBUG 宏</span><span>
+</span><span>add</span><span>_</span><span>definitions(-DDEBUG</span><span>)</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>#</span><span>ifdef DEBUG</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>printf("debug...</span><span>\</span><span>n"</span><span>)</span><span>;</span><span>
+</span><span>#</span><span>endif</span><span>
+</span></code></pre><h3 id="target-2.03323587e-01">资源链接</h3><a href="https://subingwen.cn/cmake/CMake-primer/">https://subingwen.cn/cmake/CMake-primer/</a></article>
+</main>
