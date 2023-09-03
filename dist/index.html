@@ -58,25 +58,6 @@ h6 {font-size: 14px;}
     margin: auto;
     padding: 0 1em;
 }
-#navigation {
-    padding: 0 1em;
-}
-@media screen and (min-width: 1025px) {
-    #navigation {
-        overflow: auto;
-        width: var(--nav-width);
-        height: 100vh;
-        position: fixed;
-        top:0;
-        left:0;
-        bottom:0;
-        padding: unset;
-        margin-left: var(--nav-margin-l);
-    }
-    #contents-wrapper {
-        margin-left: calc(var(--nav-width) + var(--nav-margin-l));
-    }
-}
 table, td {
     border-collapse: collapse;
     border: 1px solid grey;
@@ -152,45 +133,27 @@ display: inline-block;
  text-align: right;
  color: #999;
 }
-.t_left{
-    text-align:left;
-}
-.t_right{
-    text-align:right;
-}
-.t_center{
-    text-align:center;
-}
-.t_justify{
-    text-align:justify;
-}
-.tv_top{
-    vertical-align:top;
-}
-.tv_middle{
-    vertical-align:middle;
-}
-.tv_bottom{
-    vertical-align:bottom;
-}
 </style>
   </head>
 <body class="bg-slate-800">
-    <div class="container xl mx-auto"><header class="flex flex-row items-center h-24 w-auto bg-slate-300">
-<nav class="flex flex-row items-center h-10 w-full"><div class="basis-1/4 pl-4"> 不再犹豫 </div><div class="basis-4/5"><ul class="flex flex-row"><li class="mx-4"><a data-href="/home">Home</a></li><li class="mx-4"><a data-href="/about">About</a></li>    </ul>
+    <div class="container"><header>
+<nav><div> 不再犹豫 </div><div><ul><li><a data-href="/home">Home</a></li><li><a data-href="/about">About</a></li>    </ul>
 </div>
 </nav>
-</header><main class="flex justify-center h-auto">
+</header><main>
     <!-- 版心 -->
-    <div class="my-4 w-4/5 h-full bg-slate-100">
+    <div>
         <!-- content -->
         <div><button id="btn">返回</button></div>
-        <div class="py-2" id="content" transition-style="in:circle:center">   <section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">随记</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-1/1-first">first article</a><p class="pub-date">2023-02-17</p></li><li class="h-16 p-2"><a data-href="/issue-1/3-TS_type">TS类型体操笔记</a><p class="pub-date">2023-04-16</p></li><li class="h-16 p-2"><a data-href="/issue-1/2-cmake_learn">学习 CMAKE 笔记</a><p class="pub-date">2023-08-05</p></li></ul></section><section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">Rust</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-2/1-tauri_build_app">使用tauri+vite打包多页静态网页</a><p class="pub-date">2023-04-30</p></li></ul></section><section class="h-auto border-b-2 border-black border-double"><h5 class="h-16 p-2 text-center text-2xl">JS/TS</h5> <ul class="divide-y divide-black divide-dashed"><li class="h-16 p-2"><a data-href="/issue-3/1-js_deb_thr">笔记：js 实现防抖函数与节流函数</a><p class="pub-date">2023-07-12</p></li></ul></section></div>
+        <div class="py-2" id="content" transition-style="in:circle:center">   <section><h5>随记</h5> <ul><li><a data-href="/issue-1/1-first">first article</a><p class="pub-date">2023-02-17</p></li><li><a data-href="/issue-1/3-TS_type">TS类型体操笔记</a><p class="pub-date">2023-04-16</p></li><li><a data-href="/issue-1/2-cmake_learn">学习 CMAKE 笔记</a><p class="pub-date">2023-08-05</p></li></ul></section><section><h5>Rust</h5> <ul><li><a data-href="/issue-2/1-tauri_build_app">使用tauri+vite打包多页静态网页</a><p class="pub-date">2023-04-30</p></li></ul></section><section><h5>JS/TS</h5> <ul><li><a data-href="/issue-3/1-js_deb_thr">笔记：js 实现防抖函数与节流函数</a><p class="pub-date">2023-07-12</p></li></ul></section></div>
 </div>
-</main><footer class="h-64 mt-4 bg-slate-300"><div style="text-align: center;margin-top: 40px">  <p>Xjournal - a simple tool to build your static blog</p>  <a href="https://github.com/Chanyon/Xjournal">by Xjournal</a></div></footer> </div><script>
+</main><footer><div style="text-align: center;margin-top: 40px">  <p>Xjournal - a simple tool to build your static blog</p>  <a href="https://github.com/Chanyon/Xjournal">by Xjournal</a></div></footer> </div><script>
         const routes = {
             "/home": "./index.html",
-            "/about": "./about.html",
+"/home":"./home.html",
+
+"/about":"./about.html",
+
 "/issue-1/1-first":"./issue-1/1-first.html",
 
 "/issue-1/3-TS_type":"./issue-1/3-TS_type.html",
@@ -200,7 +163,7 @@ display: inline-block;
 "/issue-2/1-tauri_build_app":"./issue-2/1-tauri_build_app.html",
 
 "/issue-3/1-js_deb_thr":"./issue-3/1-js_deb_thr.html",
-}
+};
        async function handleLocation(path) {
             const route = routes[path] /*|| routes[404];*/
             const html = await fetch(route).then(data => data.text());

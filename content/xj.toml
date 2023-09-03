@@ -2,9 +2,13 @@ blog_name = "不再犹豫"
 github = "https://github.com/chanyon"
 output = "dist"
 is_headline = true
-[template]
-about = "content/template/about.md"
-footer = "content/template/footer.md"
+images_path = "content/images"
+[[templates]]
+name = "about"
+path = "content/template/about.md"
+[[templates]]
+name = "footer"
+path = "content/template/footer.md"
 [[menus]]
 name = "Home" 
 url = "/home"

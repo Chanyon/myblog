@@ -1,6 +1,6 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-3.41499656e-01">1.简化版防抖函数</a></li><li><a href="#target-8.67891609e-01">2.节流函数</a></li></ul><h4 id="target-3.41499656e-01">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
+<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-e859eb54-7517-4086-a363-ba1fcdc6b76d">1.简化版防抖函数</a></li><li><a href="#target-3181b46b-8466-4b09-988a-163f2dbb2a94">2.节流函数</a></li></ul><h4 id="target-e859eb54-7517-4086-a363-ba1fcdc6b76d">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
 </span><span>function debounce(fn, wait = 2500</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span>let timer = undefined;</span><span>
 </span><span> </span><span> </span><span>return function (...args</span><span>)</span><span> </span><span>{</span><span>
@@ -16,7 +16,7 @@
 </span><span>
 </span><span>document.addEventListener("mousemove",</span><span>
 </span><span>debounce((e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(1</span><span>)</span><span>)</span><span>, false</span><span>)</span><span>;</span><span>
-</span></code></pre><h4 id="target-8.67891609e-01">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
+</span></code></pre><h4 id="target-3181b46b-8466-4b09-988a-163f2dbb2a94">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
 </span><span>function throttle(fn, wait = 500</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span>let lastTime = 0;</span><span>
 </span><span> </span><span> </span><span>return function(...args</span><span>)</span><span> </span><span>{</span><span>
