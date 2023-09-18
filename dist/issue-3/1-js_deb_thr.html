@@ -1,38 +1,34 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-e859eb54-7517-4086-a363-ba1fcdc6b76d">1.简化版防抖函数</a></li><li><a href="#target-3181b46b-8466-4b09-988a-163f2dbb2a94">2.节流函数</a></li></ul><h4 id="target-e859eb54-7517-4086-a363-ba1fcdc6b76d">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
-</span><span>function debounce(fn, wait = 2500</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span>let timer = undefined;</span><span>
-</span><span> </span><span> </span><span>return function (...args</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>if (timer</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>clearTimeout(timer</span><span>)</span><span>;</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>timer = setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>fn.apply(this, args</span><span>)</span><span>;</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>}, wait</span><span>)</span><span>;</span><span>
-</span><span> </span><span> </span><span>}</span><span>
-</span><span>}</span><span>
+<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-ac938f18-7281-435c-a643-e1a31541955b">1.简化版防抖函数</a></li><li><a href="#target-8f788715-09f0-430d-b788-91c7e838f11e">2.节流函数</a></li></ul><h4 id="target-ac938f18-7281-435c-a643-e1a31541955b">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
+</span><span>function debounce(fn, wait = 2500</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span>let timer = undefined;</span><span>
+</span><span> </span><span> </span><span>return function (...args</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>if (timer</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>clearTimeout(timer</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>timer = setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>fn.apply(this, args</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}, wait</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>}</span><span>
 </span><span>
+</span><span>document.addEventListener("mousemove",</span><span>
+</span><span>debounce((e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(1</span><span>)</span><span>)</span><span>, false</span><span>)</span><span>;</span><span>
+</span></code></pre><h4 id="target-8f788715-09f0-430d-b788-91c7e838f11e">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
+</span><span>function throttle(fn, wait = 500</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span>let lastTime = 0;</span><span>
+</span><span> </span><span> </span><span>return function(...args</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>const now = +new Date(</span><span>)</span><span>;</span><span>
 </span><span>
-</span><span>document.addEventListener("mousemove",</span><span>
-</span><span>debounce((e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(1</span><span>)</span><span>)</span><span>, false</span><span>)</span><span>;</span><span>
-</span></code></pre><h4 id="target-3181b46b-8466-4b09-988a-163f2dbb2a94">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
-</span><span>function throttle(fn, wait = 500</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span>let lastTime = 0;</span><span>
-</span><span> </span><span> </span><span>return function(...args</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>const now = +new Date(</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>if (now - lastTime </span><span>></span><span> </span><span>wait</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>lastTime = now;</span><span>
 </span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>fn.apply(this, args</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>}</span><span>
 </span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>if (now - lastTime </span><span>></span><span> </span><span>wait</span><span>)</span><span> </span><span>{</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>lastTime = now;</span><span>
-</span><span>
-</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>fn.apply(this, args</span><span>)</span><span>;</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
-</span><span> </span><span> </span><span>}</span><span>
-</span><span>}</span><span>
-</span><span>
-</span><span>
-</span><span>setInterval(throttle((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(2</span><span>)</span><span>, 2000</span><span>)</span><span>, 10</span><span>)</span><span>;</span><span>
+</span><span>setInterval(throttle((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(2</span><span>)</span><span>, 2000</span><span>)</span><span>, 10</span><span>)</span><span>;</span><span>
 </span></code></pre></article>
 </main>

@@ -1,59 +1,26 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">学习 CMAKE 笔记</h4></div></div><ul><li><a href="#target-d5fee67f-2f5c-498b-b38d-bd39462397f9">CMake</a></li><li><a href="#target-97c66166-b7ab-4620-b3a8-f5077246f40c">设置工程名</a></li><li><a href="#target-6e9b05e6-d89f-48d3-be0f-659ec43ad318">定义变量</a></li><li><a href="#target-e25d281c-976b-4e05-8093-89db5669213f">搜索文件</a></li><li><a href="#target-d8d6da2c-ea72-4776-8302-6932aad2f51c">编译、链接静态库</a></li><li><a href="#target-990262ea-0ecf-4aa1-b838-87f5ecb91b41">编译、链接动态库</a></li><li><a href="#target-91f5ae42-7740-4b6e-b806-472cb90bbc2d">预定义宏</a></li><li><a href="#target-086970cc-a37e-4a37-8c92-6c9900f9b599">自定义宏</a></li><li><a href="#target-6de3c882-1ae8-4898-855a-557db53333fd">资源链接</a></li></ul><h3 id="target-d5fee67f-2f5c-498b-b38d-bd39462397f9">CMake</h3><ul><li><p>CMake是一个跨平台的项目构建工具。<br></p></li></ul><h3 id="target-97c66166-b7ab-4620-b3a8-f5077246f40c">设置工程名</h3><pre><code class="language-cmake"><span>
+<div><div class="article_title"><h4 style="text-align: center">学习 CMAKE 笔记</h4></div></div><ul><li><a href="#target-391fe36e-5488-4782-8ffd-ea6aef8fb5c4">CMake</a></li><li><a href="#target-093973b6-710c-421d-8d32-b3be078b4f1c">设置工程名</a></li><li><a href="#target-013015cc-f262-448f-a51b-fd1e92633be9">定义变量</a></li><li><a href="#target-112dd80f-e132-4bfc-adbf-ff26491a1f0d">搜索文件</a></li><li><a href="#target-e5ded7a7-a2d3-4451-89c6-c2a08c08fb80">编译、链接静态库</a></li><li><a href="#target-c7f2db0d-8321-419d-9373-71adcf74c7f4">编译、链接动态库</a></li><li><a href="#target-ed67a71a-c7d4-4535-97d1-d5908653a24d">预定义宏</a></li><li><a href="#target-80af483b-62c2-4a16-983d-c7af0c5f53e2">自定义宏</a></li><li><a href="#target-dc1f0009-f13d-4778-8fec-c99ab1d6fe54">资源链接</a></li></ul><h3 id="target-391fe36e-5488-4782-8ffd-ea6aef8fb5c4">CMake</h3><ul><li><p>CMake是一个跨平台的项目构建工具。<br></p></li></ul><h3 id="target-093973b6-710c-421d-8d32-b3be078b4f1c">设置工程名</h3><pre><code class="language-cmake"><span>
 </span><span>project("demo"</span><span>)</span><span>
-</span><span>
-</span></code></pre><h3 id="target-6e9b05e6-d89f-48d3-be0f-659ec43ad318">定义变量</h3><pre><code class="language-cmake"><span>
+</span></code></pre><h3 id="target-013015cc-f262-448f-a51b-fd1e92633be9">定义变量</h3><pre><code class="language-cmake"><span>
 </span><span>set(SRC</span><span>_</span><span>LIST ${SOURCE}</span><span>)</span><span>
-</span><span>
-</span></code></pre><h3 id="target-e25d281c-976b-4e05-8093-89db5669213f">搜索文件</h3><pre><code class="language-cmake"><span>
+</span></code></pre><h3 id="target-112dd80f-e132-4bfc-adbf-ff26491a1f0d">搜索文件</h3><pre><code class="language-cmake"><span>
 </span><span>aux</span><span>_</span><span>source</span><span>_</span><span>directory(${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/src/ SOURCE</span><span>_</span><span>FILES</span><span>)</span><span> </span><span>#</span><span>1</span><span>
-</span><span>
 </span><span>file(GLOB CLAC</span><span>_</span><span>LIST ${CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/calc/</span><span>*</span><span>.cpp</span><span>)</span><span> </span><span>#</span><span>1</span><span>
-</span><span>
-</span></code></pre><h3 id="target-d8d6da2c-ea72-4776-8302-6932aad2f51c">编译、链接静态库</h3><pre><code class="language-cmake"><span>
+</span></code></pre><h3 id="target-e5ded7a7-a2d3-4451-89c6-c2a08c08fb80">编译、链接静态库</h3><pre><code class="language-cmake"><span>
 </span><span>add</span><span>_</span><span>library(calc STATIC ${CLAC</span><span>_</span><span>LIST}</span><span>)</span><span>
-</span><span>
 </span><span>link</span><span>_</span><span>directories(${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/lib</span><span>)</span><span>
-</span><span>
 </span><span>link</span><span>_</span><span>libraries(calc</span><span>)</span><span>
-</span><span>
-</span></code></pre><h3 id="target-990262ea-0ecf-4aa1-b838-87f5ecb91b41">编译、链接动态库</h3><pre><code class="language-cmake"><span>
+</span></code></pre><h3 id="target-c7f2db0d-8321-419d-9373-71adcf74c7f4">编译、链接动态库</h3><pre><code class="language-cmake"><span>
 </span><span>set(LIBRARY</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH ${PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR}/lib</span><span>)</span><span>
-</span><span>
 </span><span>add</span><span>_</span><span>library(calc SHARED ${CLAC</span><span>_</span><span>LIST}</span><span>)</span><span>
-</span><span>
 </span><span>target</span><span>_</span><span>link</span><span>_</span><span>libraries(${TARGET</span><span>_</span><span>NAME} calc</span><span>)</span><span>
-</span><span>
-</span></code></pre><h3 id="target-91f5ae42-7740-4b6e-b806-472cb90bbc2d">预定义宏</h3><pre><code class="language-markdown"><span>
-</span><span>|</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>宏       </span><span>|</span><span> </span><span> </span><span> </span><span>描述                 </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span> </span><span>|</span><span> </span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span> </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>使用cmake命令后紧跟的目录，一般是工程的根目录 </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>BINARY</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>执行cmake命令的目录                      </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>SOURCE</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>当前处理的CMakeLists.txt所在的路径  </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>CURRENT</span><span>_</span><span>BINARY</span><span>_</span><span>DIR </span><span>|</span><span> </span><span>target 编译目录                   </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>EXECUTABLE</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH   </span><span>|</span><span> </span><span>重新定义目标二进制可执行文件的位置     </span><span>|</span><span> </span><span>
-</span><span>
-</span><span>|</span><span> </span><span>LIBRARY</span><span>_</span><span>OUTPUT</span><span>_</span><span>PATH	     </span><span>|</span><span> </span><span>重新定义目标链接库文件的位置          </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>PROJECT</span><span>_</span><span>NAME	           </span><span>|</span><span> </span><span>返回通过PROJECT定义的项目名称        </span><span>|</span><span>
-</span><span>
-</span><span>|</span><span> </span><span>CMAKE</span><span>_</span><span>BINARY</span><span>_</span><span>DIR	       </span><span>|</span><span> </span><span>项目构建路径，假设在build目录进行的构建，那么得到build目录的路径 </span><span>|</span><span>
-</span><span>
-</span></code></pre><h3 id="target-086970cc-a37e-4a37-8c92-6c9900f9b599">自定义宏</h3><pre><code class="language-cmake"><span>
-</span><span>#</span><span> </span><span>自定义 DEBUG 宏</span><span>
+</span></code></pre><h3 id="target-ed67a71a-c7d4-4535-97d1-d5908653a24d">预定义宏</h3><table><thead><th style="text-align:left">宏</th><th style="text-align:center">描述</th></thead><tbody><tr><td style="text-align:left">PROJECT_SOURCE_DIR</td><td style="text-align:center">使用cmake命令后紧跟的目录，一般是工程的根目录</td></tr><tr><td style="text-align:left">PROJECT_BINARY_DIR</td><td style="text-align:center">执行cmake命令的目录</td></tr><tr><td style="text-align:left">CMAKE_CURRENT_SOURCE_DIR</td><td style="text-align:center">当前处理的CMakeLists.txt所在的路径</td></tr><tr><td style="text-align:left">CMAKE_CURRENT_BINARY_DIR</td><td style="text-align:center">target 编译目录</td></tr><tr><td style="text-align:left">EXECUTABLE_OUTPUT_PATH</td><td style="text-align:center">重新定义目标二进制可执行文件的位置</td></tr><tr><td style="text-align:left">LIBRARY_OUTPUT_PATH	</td><td style="text-align:center">重新定义目标链接库文件的位置</td></tr><tr><td style="text-align:left">PROJECT_NAME	</td><td style="text-align:center">返回通过PROJECT定义的项目名称</td></tr><tr><td style="text-align:left">CMAKE_BINARY_DIR	</td><td style="text-align:center">项目构建路径，假设在build目录进行的构建，那么得到build目录的路径</td></tr></tbody></table><h3 id="target-80af483b-62c2-4a16-983d-c7af0c5f53e2">自定义宏</h3><pre><code class="language-cmake"><span>
+</span><span>#</span><span> </span><span>自定义 DEBUG 宏</span><span>
 </span><span>add</span><span>_</span><span>definitions(-DDEBUG</span><span>)</span><span>
 </span><span>
-</span><span>
-</span><span>
-</span><span>#</span><span>ifdef DEBUG</span><span>
-</span><span> </span><span> </span><span> </span><span> </span><span>printf("debug...</span><span>\</span><span>n"</span><span>)</span><span>;</span><span>
-</span><span>#</span><span>endif</span><span>
-</span></code></pre><h3 id="target-6de3c882-1ae8-4898-855a-557db53333fd">资源链接</h3><a href="https://subingwen.cn/cmake/CMake-primer/">https://subingwen.cn/cmake/CMake-primer/</a></article>
+</span><span>#</span><span>ifdef DEBUG</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>printf("debug...</span><span>\</span><span>n"</span><span>)</span><span>;</span><span>
+</span><span>#</span><span>endif</span><span>
+</span></code></pre><h3 id="target-dc1f0009-f13d-4778-8fec-c99ab1d6fe54">资源链接</h3><a href="https://subingwen.cn/cmake/CMake-primer/">https://subingwen.cn/cmake/CMake-primer/</a></article>
 </main>

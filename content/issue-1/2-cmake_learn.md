@@ -31,18 +31,18 @@ target_link_libraries(${TARGET_NAME} calc)
 ```
 
 ### 预定义宏
-```markdown
+
 |       宏       |   描述                 |
-| ------------- | ---------------------- |
-| PROJECT_SOURCE_DIR | 使用cmake命令后紧跟的目录，一般是工程的根目录 |
-| PROJECT_BINARY_DIR | 执行cmake命令的目录                      |
-| CMAKE_CURRENT_SOURCE_DIR | 当前处理的CMakeLists.txt所在的路径  |
-| CMAKE_CURRENT_BINARY_DIR | target 编译目录                   |
-| EXECUTABLE_OUTPUT_PATH   | 重新定义目标二进制可执行文件的位置     | 
-| LIBRARY_OUTPUT_PATH	     | 重新定义目标链接库文件的位置          |
-| PROJECT_NAME	           | 返回通过PROJECT定义的项目名称        |
-| CMAKE_BINARY_DIR	       | 项目构建路径，假设在build目录进行的构建，那么得到build目录的路径 |
-```
+| :------------- | :----------------------: |
+| PROJECT\_SOURCE\_DIR  |  使用cmake命令后紧跟的目录，一般是工程的根目录 |
+| PROJECT\_BINARY\_DIR  |  执行cmake命令的目录                      |
+| CMAKE\_CURRENT\_SOURCE\_DIR |   当前处理的CMakeLists.txt所在的路径  |
+| CMAKE\_CURRENT\_BINARY\_DIR |   target 编译目录                   |
+| EXECUTABLE\_OUTPUT\_PATH   |   重新定义目标二进制可执行文件的位置     |
+| LIBRARY\_OUTPUT\_PATH	     |   重新定义目标链接库文件的位置          |
+| PROJECT\_NAME	           |   返回通过PROJECT定义的项目名称        |
+| CMAKE\_BINARY\_DIR	       |   项目构建路径，假设在build目录进行的构建，那么得到build目录的路径 |
+
 
 ### 自定义宏
 ```cmake

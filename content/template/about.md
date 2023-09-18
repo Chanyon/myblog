@@ -3,7 +3,7 @@ hello,欢迎来到我的BLOG！
 <p>喜欢计算机科学，对<em style="color: #89bcec">前端和编译器</em>开发感兴趣。</p>
 <p><a href="https://github.com/Chanyon">my github</a></p>
 
-![https://github.com/Chanyon](/images/chanyon-github-business-card2.png)
+![https://github.com/Chanyon](./images/chanyon-github-business-card2.png)
 
 ---
 
@@ -14,7 +14,7 @@ hello,欢迎来到我的BLOG！
 ---
 
 前端:
-<a href="https://github.com/Chanyon/go\_web\_blog" target="\_blank">前后端分离BLOG</a>
+[前后端分离BLOG](https://github.com/Chanyon/go\_web\_blog)
 
 
 -----

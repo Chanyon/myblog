@@ -1,0 +1,117 @@
+<main transition-style="in:wipe:down">
+<article>
+<div><div class="article_title"><h4 style="text-align: center">笔记：JavaScript promise 简单实现</h4></div></div><ul><li><a href="#target-efd98ed6-87b6-4351-b41f-980ce1559c60">JavaScript Promise 简单实现</a></li><li><a href="#target-ab8c2101-d0ea-47fd-9606-71e8dc4090f1">V1:</a></li><li><a href="#target-dab3c574-82cd-4132-a2e9-9ddc82d509ab">V2:</a></li></ul><h3 id="target-efd98ed6-87b6-4351-b41f-980ce1559c60">JavaScript Promise 简单实现</h3><h4 id="target-ab8c2101-d0ea-47fd-9606-71e8dc4090f1">V1:</h4><pre><code class="language-js"><span>
+</span><span>class SimplePromise {</span><span>
+</span><span> </span><span> </span><span>constructor(executor</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'pending'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>value = undefined</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>reason = undefined</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>const resolve = value =</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>if (this.status === 'pending'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.status = 'fulfilled'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.value = value</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>const reject = reason =</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>if (this.status === 'pending'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.status = 'rejected'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.reason = reason</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>try {</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>executor(resolve, reject</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>} catch (error</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>reject(error</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span>then(onFulfilled, onRejected</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>if (this.status === 'fulfilled'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>onFulfilled(this.value</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>if (this.status === 'rejected'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>onRejected(this.reason</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>}</span><span>
+</span><span>
+</span><span>const sp = new SimplePromise((resolve, reject</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span>if (!true</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>resolve(1</span><span>)</span><span>
+</span><span> </span><span> </span><span>} else {</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>reject("error"</span><span>)</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>}</span><span>)</span><span>.then((v</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(v</span><span>)</span><span> </span><span>}, (e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(e</span><span>)</span><span>}</span><span>)</span><span>
+</span></code></pre><h4 id="target-dab3c574-82cd-4132-a2e9-9ddc82d509ab">V2:</h4><pre><code class="language-js"><span>
+</span><span>class SimplePromise {</span><span>
+</span><span> </span><span> </span><span>constructor(executor</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'pending'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>value = undefined</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>reason = undefined</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onFulfilledCallbacks = </span><span>[</span><span>]</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onRejectedCallbacks = </span><span>[</span><span>]</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>const resolve = value =</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>if (value instanceof SimplePromise</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>return value.then(resolve, reject</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>if (this.</span><span>_</span><span>status === 'pending'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'fulfilled'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>value = value</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onFulfilledCallbacks.forEach(cb =</span><span>></span><span> </span><span>cb(this.</span><span>_</span><span>value</span><span>)</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}, 0</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>const reject = reason =</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>if (this.</span><span>_</span><span>status === 'pending'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'rejected'</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>reason = reason</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onRejectedCallbacks.forEach(cb =</span><span>></span><span> </span><span>cb(this.</span><span>_</span><span>reason</span><span>)</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}, 0</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>try {</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>executor(resolve, reject</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>} catch (error</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>reject(error</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span>then(onFulfilled, onRejected</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>if (this.</span><span>_</span><span>status === 'fulfilled'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>onFulfilled(this.</span><span>_</span><span>value</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}, 0</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>} else if (this.</span><span>_</span><span>status === 'rejected'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>onRejected(this.</span><span>_</span><span>reason</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>}, 0</span><span>)</span><span>;</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>} else if (this.</span><span>_</span><span>status === 'pending'</span><span>)</span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onFulfilledCallbacks.push(onFulfilled</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>onRejectedCallbacks.push(onRejected</span><span>)</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>}</span><span>
+</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>return this</span><span>
+</span><span> </span><span> </span><span>}</span><span>
+</span><span>}</span><span>
+</span><span>
+</span><span>const sp = new SimplePromise((resolve, rejected</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span>// setTimeout(resolve, 1000, Math.random(</span><span>)</span><span>)</span><span>
+</span><span> </span><span> </span><span>resolve(new SimplePromise((resolve</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>setTimeout(resolve, 1000, Math.random(</span><span>)</span><span>)</span><span>
+</span><span> </span><span> </span><span>}</span><span>)</span><span>)</span><span>
+</span><span>}</span><span>)</span><span>
+</span><span>
+</span><span>setTimeout((</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{</span><span>
+</span><span> </span><span> </span><span>sp.then(v =</span><span>></span><span> </span><span>console.log(</span><span>`</span><span>inner: ${v}</span><span>`</span><span>)</span><span>)</span><span>
+</span><span>}, 0</span><span>)</span><span>
+</span><span>sp.then((v</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(</span><span>`</span><span>outer: ${v}</span><span>`</span><span>)</span><span> </span><span>}, (e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(e</span><span>)</span><span> </span><span>}</span><span>)</span><span>
+</span></code></pre></article>
+</main>
