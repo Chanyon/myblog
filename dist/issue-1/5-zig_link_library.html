@@ -1,0 +1,50 @@
+<main transition-style="in:wipe:down">
+<article>
+<div><div class="article_title"><h4 style="text-align: center">zig_link_library</h4></div></div><ul><li><a href="#target-f7fd790b-f87f-4c4e-852b-e75b4a6469a8">使用头文件+c文件方式</a></li><li><a href="#target-ffdeb6ac-5bc8-4886-afb7-cebc8da3167b">使用头文件+库方式</a></li><li><a href="#target-10d5fdf3-9552-480a-9fab-050eec6fc531">使用C-ABI+库方式</a></li></ul><h3 id="target-f7fd790b-f87f-4c4e-852b-e75b4a6469a8">使用头文件+c文件方式</h3><pre><code><span>
+</span><span>
+</span><span>//build.zig</span><span>
+</span><span>exe.addCSourceFile(.{.path="hello.c"}</span><span>)</span><span>;</span><span>
+</span><span>exe.addIncludeDir(.{.path = "include/"}</span><span>)</span><span>;</span><span>
+</span><span>exe.linkLibC(</span><span>)</span><span>;</span><span>
+</span><span>
+</span><span>
+</span><span>// use</span><span>
+</span><span>const c = @cImport({</span><span>
+</span><span> </span><span> </span><span> </span><span> </span><span>@cInclude("hello.h"</span><span>)</span><span>;</span><span>
+</span><span>}</span><span>)</span><span>;</span><span>
+</span><span>c.hello(</span><span>)</span><span>;</span><span>
+</span></code></pre><h3 id="target-ffdeb6ac-5bc8-4886-afb7-cebc8da3167b">使用头文件+库方式</h3><pre><code><span>
+</span><span>
+</span><span>//build.zig</span><span>
+</span><span>exe.addIncludeDir(.{.path = "include/"}</span><span>)</span><span>;</span><span>
+</span><span>exe.addLibraryPath("lib"</span><span>)</span><span>; // lib/hello.lib</span><span>
+</span><span>exe.linkSystemLibrary("hello"</span><span>)</span><span>; // -l hello</span><span>
+</span><span>
+</span><span>
+</span><span>// use </span><span>
+</span><span>const c = @cImport({</span><span>
+</span><span> </span><span> </span><span>@cInclude("hello.h"</span><span>)</span><span>;</span><span>
+</span><span>}</span><span>)</span><span>;</span><span>
+</span><span>
+</span><span>
+</span><span>c.hello(</span><span>)</span><span>;</span><span>
+</span></code></pre><h3 id="target-10d5fdf3-9552-480a-9fab-050eec6fc531">使用C-ABI+库方式</h3><pre><code><span>
+</span><span>
+</span><span>// build.zig</span><span>
+</span><span>const lib = b.addStaticLibrary(.{}</span><span>)</span><span>; // 生成静态库</span><span>
+</span><span>lib.addIncludeDir(.{}</span><span>)</span><span>;</span><span>
+</span><span>lib.addCSourceFile(.{}</span><span>)</span><span>;</span><span>
+</span><span>lib.linkLibC(</span><span>)</span><span>; // or lib.linkLibCpp(</span><span>)</span><span>;</span><span>
+</span><span>
+</span><span>
+</span><span>const exe = b.addExe(.{}</span><span>)</span><span>;</span><span>
+</span><span>exe.addLibrary(lib</span><span>)</span><span>; // 使用静态库</span><span>
+</span><span>
+</span><span>
+</span><span>// main.zig</span><span>
+</span><span>extern "c" hello(</span><span>)</span><span> </span><span>void; // bind</span><span>
+</span><span>pub fn main(</span><span>)</span><span> </span><span>!</span><span>void {</span><span>
+</span><span> </span><span> </span><span>hello(</span><span>)</span><span>;</span><span>
+</span><span>}</span><span>
+</span></code></pre></article>
+</main>

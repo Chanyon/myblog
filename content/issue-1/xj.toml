@@ -13,3 +13,13 @@ file = "2-cmake_learn.md"
 title = "学习 CMAKE 笔记"
 author = ""
 pub_date = "2023-08-05"
+[[articles]]
+file = "4-compiler.md"
+title = "编译器设计读书笔记"
+author = ""
+pub_date = "2023-10-24"
+[[articles]]
+file = "5-zig_link_library.md"
+title = "zig_link_library"
+author = ""
+pub_date = "2023-11-09"

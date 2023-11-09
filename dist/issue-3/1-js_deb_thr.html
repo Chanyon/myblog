@@ -1,6 +1,6 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-ac938f18-7281-435c-a643-e1a31541955b">1.简化版防抖函数</a></li><li><a href="#target-8f788715-09f0-430d-b788-91c7e838f11e">2.节流函数</a></li></ul><h4 id="target-ac938f18-7281-435c-a643-e1a31541955b">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
+<div><div class="article_title"><h4 style="text-align: center">笔记：js 实现防抖函数与节流函数</h4></div></div><ul><li><a href="#target-493db637-8516-47e9-bda3-c342a79f1ea8">1.简化版防抖函数</a></li><li><a href="#target-89e1f7fe-98bd-4eb5-abba-2e4b4bbb0800">2.节流函数</a></li></ul><h4 id="target-493db637-8516-47e9-bda3-c342a79f1ea8">1.简化版防抖函数</h4><p>指定时间内只执行一次回调函数<br></p><pre><code class="language-javascript"><span>
 </span><span>function debounce(fn, wait = 2500</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span>let timer = undefined;</span><span>
 </span><span> </span><span> </span><span>return function (...args</span><span>)</span><span> </span><span>{</span><span>
@@ -15,7 +15,7 @@
 </span><span>
 </span><span>document.addEventListener("mousemove",</span><span>
 </span><span>debounce((e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>console.log(1</span><span>)</span><span>)</span><span>, false</span><span>)</span><span>;</span><span>
-</span></code></pre><h4 id="target-8f788715-09f0-430d-b788-91c7e838f11e">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
+</span></code></pre><h4 id="target-89e1f7fe-98bd-4eb5-abba-2e4b4bbb0800">2.节流函数</h4><p>触发事件间隔大于等于指定的时间才会执行回调函数<br></p><pre><code class="language-javascript"><span>
 </span><span>function throttle(fn, wait = 500</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span>let lastTime = 0;</span><span>
 </span><span> </span><span> </span><span>return function(...args</span><span>)</span><span> </span><span>{</span><span>
