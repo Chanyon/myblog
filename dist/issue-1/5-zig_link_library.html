@@ -1,6 +1,6 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">zig_link_library</h4></div></div><ul><li><a href="#target-f7fd790b-f87f-4c4e-852b-e75b4a6469a8">使用头文件+c文件方式</a></li><li><a href="#target-ffdeb6ac-5bc8-4886-afb7-cebc8da3167b">使用头文件+库方式</a></li><li><a href="#target-10d5fdf3-9552-480a-9fab-050eec6fc531">使用C-ABI+库方式</a></li></ul><h3 id="target-f7fd790b-f87f-4c4e-852b-e75b4a6469a8">使用头文件+c文件方式</h3><pre><code><span>
+<div><div class="article_title"><h4 style="text-align: center">zig_link_library</h4></div></div><ul><li><a href="#target-cff8314b-e0fb-4b36-a15e-68caae1f39d8">使用头文件+c文件方式</a></li><li><a href="#target-7ab6db64-8ef1-4e55-92d9-94de910e45c2">使用头文件+库方式</a></li><li><a href="#target-65e40d74-562e-4146-8fd2-07477e11f328">使用C-ABI+库方式</a></li></ul><h3 id="target-cff8314b-e0fb-4b36-a15e-68caae1f39d8">使用头文件+c文件方式</h3><pre><code><span>
 </span><span>
 </span><span>//build.zig</span><span>
 </span><span>exe.addCSourceFile(.{.path="hello.c"}</span><span>)</span><span>;</span><span>
@@ -13,7 +13,7 @@
 </span><span> </span><span> </span><span> </span><span> </span><span>@cInclude("hello.h"</span><span>)</span><span>;</span><span>
 </span><span>}</span><span>)</span><span>;</span><span>
 </span><span>c.hello(</span><span>)</span><span>;</span><span>
-</span></code></pre><h3 id="target-ffdeb6ac-5bc8-4886-afb7-cebc8da3167b">使用头文件+库方式</h3><pre><code><span>
+</span></code></pre><h3 id="target-7ab6db64-8ef1-4e55-92d9-94de910e45c2">使用头文件+库方式</h3><pre><code><span>
 </span><span>
 </span><span>//build.zig</span><span>
 </span><span>exe.addIncludeDir(.{.path = "include/"}</span><span>)</span><span>;</span><span>
@@ -28,7 +28,7 @@
 </span><span>
 </span><span>
 </span><span>c.hello(</span><span>)</span><span>;</span><span>
-</span></code></pre><h3 id="target-10d5fdf3-9552-480a-9fab-050eec6fc531">使用C-ABI+库方式</h3><pre><code><span>
+</span></code></pre><h3 id="target-65e40d74-562e-4146-8fd2-07477e11f328">使用C-ABI+库方式</h3><pre><code><span>
 </span><span>
 </span><span>// build.zig</span><span>
 </span><span>const lib = b.addStaticLibrary(.{}</span><span>)</span><span>; // 生成静态库</span><span>

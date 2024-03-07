@@ -1,8 +1,8 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">TS类型体操笔记</h4></div></div><ul><li><a href="#target-f3d9c3e4-dd39-4455-a16c-904903af7d07">元组长度计算:</a></li><li><a href="#target-89788dbb-a620-47ed-9f81-dad117fe0713">1. Add</a></li><li><a href="#target-658eef2a-6f9a-4ed2-8953-fc69092477bc">2. Subtract</a></li><li><a href="#target-dfd21c5f-1768-44ca-b3f7-4281e3d53d19">3. Multiply</a></li><li><a href="#target-e619e890-e067-47b7-9e95-c040e7eb4074">4. Div</a></li></ul><h3 id="target-f3d9c3e4-dd39-4455-a16c-904903af7d07">元组长度计算:</h3><p>元组类型取length就是数值<br>example:<br></p><pre><code><span>
+<div><div class="article_title"><h4 style="text-align: center">TS类型体操笔记</h4></div></div><ul><li><a href="#target-ecb39e8e-1abe-4583-9565-d7a14eb0e896">元组长度计算:</a></li><li><a href="#target-3d4704b0-34a5-45cb-8707-6ca7d31a7bfa">1. Add</a></li><li><a href="#target-5a5ac3cc-083d-4d79-b03d-292d13e0f2b1">2. Subtract</a></li><li><a href="#target-8188fd5a-e89d-4130-9ae4-6c50a5901448">3. Multiply</a></li><li><a href="#target-4ca583e5-87a7-4ec5-ac66-7d84a971a665">4. Div</a></li></ul><h3 id="target-ecb39e8e-1abe-4583-9565-d7a14eb0e896">元组长度计算:</h3><p>元组类型取length就是数值<br>example:<br></p><pre><code><span>
 </span><span>type num2 = </span><span>[</span><span>unknown,string</span><span>]</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>=</span><span>></span><span> </span><span>2</span><span>
-</span></code></pre><p>元组长度实现加减乘除<br></p><h3 id="target-89788dbb-a620-47ed-9f81-dad117fe0713">1. Add</h3><pre><code class="language-typescript"><span>
+</span></code></pre><p>元组长度实现加减乘除<br></p><h3 id="target-3d4704b0-34a5-45cb-8707-6ca7d31a7bfa">1. Add</h3><pre><code class="language-typescript"><span>
 </span><span>type BuildArray</span><span><</span><span>
 </span><span>	Length extends number,</span><span>
 </span><span>	Element = unknown,</span><span>
@@ -16,21 +16,21 @@
 </span><span>
 </span><span>type AddRes = Add</span><span><</span><span>1</span><span>,1</span><span>></span><span>
 </span><span>//值=</span><span>></span><span> </span><span>2</span><span> </span><span>
-</span></code></pre><h3 id="target-658eef2a-6f9a-4ed2-8953-fc69092477bc">2. Subtract</h3><pre><code class="language-typescript"><span>
+</span></code></pre><h3 id="target-5a5ac3cc-083d-4d79-b03d-292d13e0f2b1">2. Subtract</h3><pre><code class="language-typescript"><span>
 </span><span>type Subtract</span><span><</span><span>Num1 extends number, Num2 extends number</span><span>></span><span> </span><span>= </span><span>
 </span><span> </span><span> </span><span>BuildArray</span><span><</span><span>Num1</span><span>></span><span> </span><span>extends </span><span>[</span><span>...BuildArray</span><span><</span><span>Num2</span><span>></span><span>, ...infer Rest</span><span>]</span><span> </span><span>? </span><span>
 </span><span> </span><span> </span><span>Rest</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span> </span><span>never;</span><span>
 </span><span>
 </span><span>type SubRes = Subtract</span><span><</span><span>10</span><span>,1</span><span>></span><span>;</span><span>
 </span><span>// 9</span><span>
-</span></code></pre><h3 id="target-dfd21c5f-1768-44ca-b3f7-4281e3d53d19">3. Multiply</h3><p>乘法是多个加法累加的结果<br></p><pre><code class="language-typescript"><span>
+</span></code></pre><h3 id="target-8188fd5a-e89d-4130-9ae4-6c50a5901448">3. Multiply</h3><p>乘法是多个加法累加的结果<br></p><pre><code class="language-typescript"><span>
 </span><span>type Mul</span><span><</span><span>Num1 extends number, Num2 extends number, ResultArray extends Array</span><span><</span><span>unknown</span><span>></span><span> </span><span>= </span><span>[</span><span>]</span><span>></span><span> </span><span>=</span><span>
 </span><span>	Num2 extends 0 ? ResultArray</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span>
 </span><span> </span><span> </span><span>Mul</span><span><</span><span>Num1,Subtract</span><span><</span><span>Num2,1</span><span>></span><span>, </span><span>[</span><span>...BuildArray</span><span><</span><span>Num1</span><span>></span><span>, ...ResultArray</span><span>]</span><span>></span><span>;</span><span>
 </span><span>
 </span><span>type MulRes = Mul</span><span><</span><span>2</span><span>,2</span><span>></span><span>
 </span><span>// 4</span><span>
-</span></code></pre><h3 id="target-e619e890-e067-47b7-9e95-c040e7eb4074">4. Div</h3><p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code><br></p><pre><code class="language-typescript"><span>
+</span></code></pre><h3 id="target-4ca583e5-87a7-4ec5-ac66-7d84a971a665">4. Div</h3><p>除法的实现就是被减数不断减去减数，直到减为 <code>0</code><br></p><pre><code class="language-typescript"><span>
 </span><span>//整除</span><span>
 </span><span>type Div</span><span><</span><span>Num1 extends number, Num2 extends number, ResultArray extends Array</span><span><</span><span>unknown</span><span>></span><span> </span><span>= </span><span>[</span><span>]</span><span>></span><span> </span><span>=</span><span>
 </span><span>	Num1 extends 0 ? ResultArray</span><span>[</span><span>'length'</span><span>]</span><span> </span><span>:</span><span>

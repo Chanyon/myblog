@@ -1,6 +1,6 @@
 <main transition-style="in:wipe:down">
 <article>
-<div><div class="article_title"><h4 style="text-align: center">笔记：JavaScript promise 简单实现</h4></div></div><ul><li><a href="#target-cafc3720-47c8-4286-8c3d-3439d39ed71c">JavaScript Promise 简单实现</a></li><li><a href="#target-d13a29be-1cb6-4018-a08c-5ab37c753c30">V1:</a></li><li><a href="#target-6b07e2cf-ce3e-4faf-8d34-eee4345dd3c3">V2:</a></li></ul><h3 id="target-cafc3720-47c8-4286-8c3d-3439d39ed71c">JavaScript Promise 简单实现</h3><h4 id="target-d13a29be-1cb6-4018-a08c-5ab37c753c30">V1:</h4><pre><code class="language-js"><span>
+<div><div class="article_title"><h4 style="text-align: center">笔记：JavaScript promise 简单实现</h4></div></div><ul><li><a href="#target-1f89d13f-3770-4a05-a25f-cba295f6ca1e">JavaScript Promise 简单实现</a></li><li><a href="#target-86a2a7fd-9d51-4d68-a107-e9730939f0b6">V1:</a></li><li><a href="#target-54eaefcc-d500-4065-be1a-32cd9e3d05cb">V2:</a></li></ul><h3 id="target-1f89d13f-3770-4a05-a25f-cba295f6ca1e">JavaScript Promise 简单实现</h3><h4 id="target-86a2a7fd-9d51-4d68-a107-e9730939f0b6">V1:</h4><pre><code class="language-js"><span>
 </span><span>class SimplePromise {</span><span>
 </span><span> </span><span> </span><span>constructor(executor</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'pending'</span><span>
@@ -45,7 +45,7 @@
 </span><span> </span><span> </span><span> </span><span> </span><span>reject("error"</span><span>)</span><span>
 </span><span> </span><span> </span><span>}</span><span>
 </span><span>}</span><span>)</span><span>.then((v</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(v</span><span>)</span><span> </span><span>}, (e</span><span>)</span><span> </span><span>=</span><span>></span><span> </span><span>{ console.log(e</span><span>)</span><span>}</span><span>)</span><span>
-</span></code></pre><h4 id="target-6b07e2cf-ce3e-4faf-8d34-eee4345dd3c3">V2:</h4><pre><code class="language-js"><span>
+</span></code></pre><h4 id="target-54eaefcc-d500-4065-be1a-32cd9e3d05cb">V2:</h4><pre><code class="language-js"><span>
 </span><span>class SimplePromise {</span><span>
 </span><span> </span><span> </span><span>constructor(executor</span><span>)</span><span> </span><span>{</span><span>
 </span><span> </span><span> </span><span> </span><span> </span><span>this.</span><span>_</span><span>status = 'pending'</span><span>
